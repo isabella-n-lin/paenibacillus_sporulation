@@ -52,6 +52,18 @@ awk -f select_it1.awk psi_blast_paeni.csv > psi_blast_paeni_it1.csv
 
 
 
-### --- PERCENT IDENTITY MATRICES --- ###
+### --- Spo0F, Spo0B, Spo0A ORTHOLOG ALIGNMENT AND PERCENT IDENTITY --- ###
+# Protein accession listed in Table S3
+
+/programs/clustalo -i spo0B-domain_containing.fasta -o spo0B_domain-containing_clustalo.fasta --full --percent-id --distmat-out=spo0B_pid_clustal.csv
+
+/programs/clustalo -i spo0F_for_pid.fasta -o spo0F_clustalo.fasta --full --percent-id --distmat-out=spo0F_pid_clustal.csv
+
+/programs/clustalo -i spo0A_for_pid.fasta -o spo0A_clustalo.fasta --full --percent-id --distmat-out=spo0A_pid_clustal.csv
 
 
+
+### ---- CONSERVATION PLOT ALIGNMENT --- ###
+# Spo0B_protein_cleaned_2.faa contained 1437 Paenibacillus Spo0B sequences, with lengths 199-279.
+
+/programs/mafft/bin/mafft --op 3 --ep 0.3 Spo0B_protein_cleaned_2.faa > Spo0B_align_op3_ep_3.fasta 
