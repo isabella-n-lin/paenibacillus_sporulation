@@ -1,0 +1,57 @@
+### --- PAENIBACILLUS BLAST --- ###
+
+# Acquired Paenibacillus genomes April 21, 2025
+
+export PATH=/programs/ncbi_datasets:$PATH
+
+datasets download genome taxon paenibacillus --include genome,protein,gtf --assembly-source refseq --annotated --filename paeni.zip  
+
+# Removed genomes with ≥5% CheckM contamination and/or ≤95% CheckM completeness using a text file of genomes accessions to remove.
+
+xargs -d '\n' -a genomes_to_remove.txt rm –r
+
+# Combined all protein files to make a BLAST database.
+
+for f in proteins/*/protein.faa; do
+    accession=$(basename "$(dirname "$f")")
+    awk -v a="$accession" '/^>/ {print ">" a "_" substr($0,2); next} {print}' "$f"
+done > proteins_unique.faa
+
+makeblastdb -in proteins_unique.faa -dbtype prot -parse_seqids
+
+# Ran PSI-BLAST. B. subtilis protein seqeunces are from SubtiWiki. After running, we decided to use only the first iteration results, which is equivalent to a BLASTP run.
+
+nohup psiblast -query bs_protein_sequences.fasta -db proteins_unique.faa -outfmt 7 -num_iterations 3 -max_target_seqs 10000 -out psi_blast_paeni.csv
+
+# We extracted the first iteration using select_it1.awk
+# The following are the contents of select_it1.awk:
+
+/^# Query:/ {
+  query = $0
+  next
+}
+
+/^# Iteration:/ {
+  if ($3 == 1) {
+    curr_iter = 1
+  } else {
+    curr_iter = 0
+  }
+  next
+}
+
+/^#/ { next }  # skip other comment lines
+
+{
+  if (curr_iter == 1) print
+}
+
+# Extracted BLASTP results.
+
+awk -f select_it1.awk psi_blast_paeni.csv > psi_blast_paeni_it1.csv
+
+
+
+### --- PERCENT IDENTITY MATRICES --- ###
+
+
