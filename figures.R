@@ -12,7 +12,7 @@ library(ggheatmap)
 
 
 
-### --- Figure 2: Phylogenetic Tree --- ###
+### --- FIGURE 2: PHYLOGENETIC TREE --- ###
 
 # Read in Spo0B-TM data
 spo0T_TMRs = data.frame(read_excel("~/Library/CloudStorage/Box-Box/Feaga Lab/Cassidy Prince/Bella/Bioinformatics for Paper/predicted_tmrs.xlsx"))
@@ -37,7 +37,7 @@ tips = as.character(lapply(tree$tip.label, function(x) {
   paste(tip_split[1], tip_split[2], sep = "_")}))
 tree$tip.label = tips
 
-# Drop the genome GCF_047444735.1 becasue the genome was suppressed.
+# Drop GCF_047444735.1 tip because the genome was suppressed.
 tree <- drop.tip(tree, "GCF_047444735.1")
 
 #Plot tree with gene presence/absence
@@ -62,7 +62,7 @@ ggsave("~/Library/CloudStorage/Box-Box/Feaga Lab/Cassidy Prince/Bella/Bioinforma
 
 
 
-### --- Figure 3A: Hydropathy Plot --- ###
+### --- FIGURE 3A: HYDROPATHY PLOT --- ###
 
 # Import Kyte-Doolittle hyrdropathy plot values (from ProtScale on Expasy server)
 hydrophobicity <- read_xlsx("~/Library/CloudStorage/Box-Box/Feaga Lab/Cassidy Prince/Bella/Bioinformatics for Paper/hydrophobicity_values.xlsx")
@@ -82,7 +82,7 @@ ggsave("~/Library/CloudStorage/Box-Box/Feaga Lab/Cassidy Prince/Bella/Bioinforma
 
 
 
-### --- Figure 4B: Paenibacillus B-gal plot --- ###
+### --- FIGURE 4B: P. POLYMYXA B-GAL ASSAY --- ###
 
 # Import B-gal activity
 df_activity <- read_xlsx("~/Library/CloudStorage/Box-Box/Feaga Lab/Cassidy Prince/Bella/BACTH/B-gal/all_paeni_bgal.xlsx")
@@ -152,7 +152,7 @@ ggsave("~/Library/CloudStorage/Box-Box/Feaga Lab/Cassidy Prince/Bella/Bioinforma
 
 
 
-### --- Figure 6: Percent Identity Matrix --- ###
+### --- FIGURE 6: PERCENT IDENTITY MATRIX --- ###
 
 # Spo0F matrix
 F_matrix <- as.data.frame(read_excel("~/Library/CloudStorage/Box-Box/Feaga Lab/Cassidy Prince/Bella/Bioinformatics for Paper/percent identity/spo0F_blast_matrix.xlsx"))
@@ -239,9 +239,10 @@ ggsave("~/Library/CloudStorage/Box-Box/Feaga Lab/Cassidy Prince/Bella/Bioinforma
 
 
 
-### --- Figure 7: Conservation Plot --- ###
+### --- FIGURE 7: Spo0B CONSERVATION PLOT --- ###
 
-# Impot MAFFT alignment
+# 1437 Spo0B sequences (199-279aa) were aligned using MAFFT.
+# Import MAFFT alignment
 aln <- read.fasta("~/Library/CloudStorage/Box-Box/Feaga Lab/Cassidy Prince/Bella/Bioinformatics for Paper/Spo0B_align_op3_ep_3.fasta")
 
 # Score conservation
@@ -265,7 +266,7 @@ ggsave("~/Library/CloudStorage/Box-Box/Feaga Lab/Cassidy Prince/Bella/Bioinforma
 
 
 
-### --- Figure S1 --- ###
+### --- FIGURE S1 --- ###
 
 # Import gene presence matrix
 metadata_df <- read_excel("~/Library/CloudStorage/Box-Box/Feaga Lab/Cassidy Prince/Bella/Bioinformatics for Paper/metadata.xlsx")
@@ -311,7 +312,7 @@ ggsave("~/Library/CloudStorage/Box-Box/Feaga Lab/Cassidy Prince/Bella/Bioinforma
 
 
 
-### --- Figure S3 --- ###
+### --- FIGURE S3: B. SUBTILIS B-GAL ASSAY --- ###
 
 # Import B-gal activity
 df_activity <- read_xlsx("~/Library/CloudStorage/Box-Box/Feaga Lab/Cassidy Prince/Bella/BACTH/B-gal/all_bs_bgal.xlsx")
