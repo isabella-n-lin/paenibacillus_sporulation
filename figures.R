@@ -299,15 +299,15 @@ plot <- ggplot(plot_data, aes(x = Number_of_Genomes, y = Number_of_New_Genes)) +
   geom_point(size= 1, color="black") +
   geom_line(color="black") +
   scale_x_cut(108, which = c(1,2), scales=c(1, 0.9), space = 0.2) +
-  scale_y_continuous(expand = c(0, 0)) + 
+  scale_y_continuous(limits = c(0, 215),expand = c(0, 0)) + 
   labs(x = "Number of Genomes", y = "Number of New Genes") +
   theme_classic() +
-  theme(axis.text = element_text(color="black", size = 12),
+  theme(axis.text = element_text(color = "black", size = 10), 
         axis.ticks = element_line(color = "black"),
         axis.text.x = element_text(hjust = 0.5),
-        axis.labels = element_text(size = 12))
+        axis.title = element_text(size = 12))
 
-ggsave("~/Library/CloudStorage/Box-Box/Feaga Lab/Cassidy Prince/Bella/Bioinformatics for Paper/genes_per_seq_genome.png", plot, width = 7, dpi = 300, units = "in")
+ggsave("~/Library/CloudStorage/Box-Box/Feaga Lab/Cassidy Prince/Bella/Bioinformatics for Paper/genes_per_seq_genome.png", plot, width = 4.5, height = 3, dpi = 300, units = "in")
 
 
 
@@ -363,10 +363,10 @@ plot_activity <- function(df, colors, x_labels, protein_name) {
       axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1),
       axis.title.x = element_blank()) +
     # Annotate
-    annotate("segment", x = 0.6, xend = 2.4, y = max_y * 1.03, yend = max_y * 1.03, size = 1) +
-    annotate("text", x = 1.5, y = max_y * 1.06, label = paste0(protein_name, "-T25"), size = 3.5) +
-    annotate("segment", x = 2.6, xend = 3.4, y = max_y * 1.03, yend = max_y * 1.03, size = 1) +
-    annotate("text", x = 3, y = max_y * 1.06, label = "T25", size = 3.5)}
+    annotate("segment", x = 0.6, xend = 2.4, y = max_y * 1.03, yend = max_y * 1.03, linewidth = 1) +
+    annotate("text", x = 1.5, y = max_y * 1.07, label = paste0(protein_name, "-T25"), size = 3.5) +
+    annotate("segment", x = 2.6, xend = 3.4, y = max_y * 1.03, yend = max_y * 1.03, linewidth = 1) +
+    annotate("text", x = 3, y = max_y * 1.07, label = "T25", size = 3.5)}
 
 
 #Plot
@@ -383,5 +383,5 @@ p_spo0A <- plot_activity(filter(activity, protein == "Spo0A"), spo0A_colors, spo
 combined_plot <- p_spo0F + p_spo0A
 combined_plot
 
-ggsave("~/Library/CloudStorage/Box-Box/Feaga Lab/Cassidy Prince/Bella/Bioinformatics for Paper/bsub_bgal_plot.png",combined_plot, dpi = 300, width = 4.5, units = "in")
+ggsave("~/Library/CloudStorage/Box-Box/Feaga Lab/Cassidy Prince/Bella/Bioinformatics for Paper/bsub_bgal_plot.png",combined_plot, dpi = 300, width = 4.5, height = 3.75, units = "in")
 
