@@ -52,6 +52,14 @@ awk -f select_it1.awk psi_blast_paeni.csv > psi_blast_paeni_it1.csv
 
 
 
+### --- PAENIBACILLUS HMMER --- ###
+# Used the same proteins_unique.faa file from BLAST
+# Query seqeunces were Spo0B from P. polymyxa and P. validus
+
+nohup /programs/hmmer-3.3/bin/phmmer --tblout Paeni_Spo0B_PHMMER_5e2.csv -E 5e-2 Paeni_Spo0B.fasta proteins_unique.faa 
+
+
+
 ### --- Spo0F, Spo0B, Spo0A ORTHOLOG ALIGNMENT AND PERCENT IDENTITY --- ###
 # Protein accession listed in Table S3
 
@@ -64,6 +72,27 @@ awk -f select_it1.awk psi_blast_paeni.csv > psi_blast_paeni_it1.csv
 
 
 ### ---- CONSERVATION PLOT ALIGNMENT --- ###
-# Spo0B_protein_cleaned_2.faa contained 1437 Paenibacillus Spo0B sequences, with lengths 199-279.
+
+# Extracted Spo0B protein sequences.
+# In Paenibacillus, Spo0B is annotated as either spo0B domain-containing protein or sporulation initiation phosphotransferase B on NBCI.
+
+export PATH=/programs/ncbi_datasets:$PATH
+datasets download genome accession --inputfile genome_accs.txt --include protein --filename prot_gtf.zip 
+
+find ncbi_dataset/data -name "protein.faa" | while read file; do
+  gcf=$(basename "$(dirname "$file")")
+  awk -v gcf="$gcf" '
+    /^>/ {
+      keep = ($0 ~ /Spo0B/ || $0 ~ /phosphotransferase B/)
+      if (keep) print ">[" gcf "] " substr($0, 2)
+      next
+    }
+    keep
+  ' "$file"
+done > Spo0B_protein.faa
+
+# Added WP_277713256.1. 
+# For genomes with >1 Spo0B sequence, we dropped the sequences >300 aa. If there were still >1 Spo0B sequence for a genome, we dropped sequences <210 aa.
+# Kept sequences with length between 199-279aa (n = 1437) and saved in Spo0B_protein_cleaned_2.faa
 
 /programs/mafft/bin/mafft --op 3 --ep 0.3 Spo0B_protein_cleaned_2.faa > Spo0B_align_op3_ep_3.fasta 
