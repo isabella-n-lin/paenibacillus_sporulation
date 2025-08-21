@@ -59,7 +59,7 @@ p7 = gheatmap(p6, spo0A_spo0F["spo0A"], colnames = FALSE, width = 0.07, color=NA
 p8 <- p7 + theme(legend.text = element_text(size = 10), legend.title = element_text(size = 12))
 p8
 
-ggsave("~/Library/CloudStorage/Box-Box/Feaga Lab/Cassidy Prince/Bella/Bioinformatics for Paper/BLASTp/paeni_tree.png", p8, dpi=300, width=7, units="in")
+ggsave("~/Library/CloudStorage/Box-Box/Feaga Lab/Cassidy Prince/Bella/Bioinformatics for Paper/BLASTp/paeni_tree.svg", p8, dpi=300, width=7, units="in")
 
 
 
