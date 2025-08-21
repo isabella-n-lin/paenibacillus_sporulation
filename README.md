@@ -2,6 +2,6 @@
 
 ## Authors: Isabella N. Lin, Cassidy R. Prince, Heather A. Feaga
 
-### Preprint is available on bioRxiv:
+## Preprint is available on bioRxiv:
 
 Abstract:
