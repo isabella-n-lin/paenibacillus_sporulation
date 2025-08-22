@@ -91,7 +91,7 @@ find ncbi_dataset/data -name "protein.faa" | while read file; do
   ' "$file"
 done > Spo0B_protein.faa
 
-# Added WP_277713256.1. 
+# Added WP_277713256.1 (annotated as hypothetical protein)
 # For genomes with >1 Spo0B sequence, we dropped the sequences >300 aa. If there were still >1 Spo0B sequence for a genome, we dropped sequences <210 aa.
 # Kept sequences with length between 199-279aa (n = 1437) and saved in Spo0B_protein_cleaned_2.faa
 
