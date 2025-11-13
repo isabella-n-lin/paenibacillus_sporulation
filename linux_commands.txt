@@ -59,6 +59,18 @@ awk -f select_it1.awk psi_blast_paeni.csv > psi_blast_paeni_it1.csv
 nohup /programs/hmmer-3.3/bin/phmmer --tblout Paeni_Spo0B_PHMMER_5e2.csv -E 5e-2 Paeni_Spo0B.fasta proteins_unique.faa 
 
 
+### --- BACILLI HMMER --- ###
+# Downloaded all annotated protein sequences from all RefSeq Bacilli reference genomes. INput was a list of RefSeq genome accessions from NCBI online.
+
+datasets download genome accession --inputfile bacilli_accs.txt --include protein --assembly-source refseq --annotated --filename bac_prot.zip 
+
+# Query seqeunces were Spo0B from P. polymyxa, P. validus, Brevibacillus brevis, and B. subtilis
+
+/programs/hmmer-3.3/bin/phmmer --tblout spo0B_pHMMER_mult_5e2.csv -E 5e-2 spo0B.fasta bac_prot.faa  
+
+# Download taxonomy data for Bacilli surveyed. Input was a list of taxIDs from NCBI.
+
+datasets summary taxonomy taxon --inputfile bac_taxids.txt --as-json-lines | dataformat tsv taxonomy --template tax-summary > bac_taxonomy.tsv 
 
 ### --- Spo0F, Spo0B, Spo0A ORTHOLOG ALIGNMENT AND PERCENT IDENTITY --- ###
 # Protein accession listed in Table S3
