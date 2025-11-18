@@ -12,7 +12,7 @@ library(ggheatmap)
 
 
 
-### --- FIGURE 2: PHYLOGENETIC TREE --- ###
+### --- FIGURE 2A: PHYLOGENETIC TREE --- ###
 
 # Read in Spo0B-TM data
 spo0T_TMRs = data.frame(read_excel("~/Library/CloudStorage/Box-Box/Feaga Lab/Cassidy Prince/Bella/Bioinformatics for Paper/predicted_tmrs.xlsx"))
