@@ -83,7 +83,7 @@ ggsave("~/Library/CloudStorage/Box-Box/Feaga Lab/Cassidy Prince/Bella/Bioinforma
 
 
 
-### --- FIGURE 4B: P. POLYMYXA B-GAL ASSAY --- ###
+### --- FIGURE 5B: P. POLYMYXA B-GAL ASSAY --- ###
 
 # Import B-gal activity
 df_activity <- read_xlsx("~/Library/CloudStorage/Box-Box/Feaga Lab/Cassidy Prince/Bella/BACTH/B-gal/all_paeni_bgal.xlsx")
@@ -153,7 +153,7 @@ ggsave("~/Library/CloudStorage/Box-Box/Feaga Lab/Cassidy Prince/Bella/Bioinforma
 
 
 
-### --- FIGURE 6: PERCENT IDENTITY MATRIX --- ###
+### --- FIGURE 7A: PERCENT IDENTITY MATRIX --- ###
 
 # Spo0F matrix
 F_matrix <- as.data.frame(read_excel("~/Library/CloudStorage/Box-Box/Feaga Lab/Cassidy Prince/Bella/Bioinformatics for Paper/percent identity/spo0F_blast_matrix.xlsx"))
@@ -240,7 +240,7 @@ ggsave("~/Library/CloudStorage/Box-Box/Feaga Lab/Cassidy Prince/Bella/Bioinforma
 
 
 
-### --- FIGURE 7: Spo0B CONSERVATION PLOT --- ###
+### --- FIGURE 7B: Spo0B CONSERVATION PLOT --- ###
 
 # 1437 Spo0B sequences (199-279aa) were aligned using MAFFT.
 # Import MAFFT alignment
