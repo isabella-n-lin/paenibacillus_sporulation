@@ -83,7 +83,7 @@ datasets summary taxonomy taxon --inputfile bac_taxids.txt --as-json-lines | dat
 
 
 
-### ---- CONSERVATION PLOT ALIGNMENT --- ###
+### ---- FIG 7B: CONSERVATION PLOT ALIGNMENT --- ###
 
 # Extracted Spo0B protein sequences.
 # In Paenibacillus, Spo0B is annotated as either spo0B domain-containing protein or sporulation initiation phosphotransferase B on NBCI.
